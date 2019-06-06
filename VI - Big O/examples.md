@@ -143,4 +143,62 @@ the last one - there is no established relationship between N and M, so we have 
 
 -------------
 
+### Example 8
+
+Algorithm (["array", "of", "strings"])
+we have an array of strings that needs to each be sorted, and then sort the full array. What would that runtime be?
+
+```js
+let arr = ["array", "of", "strings"];
+arr.forEach(str => { // big-O runtime here is O(a), where a is length of array, because we are touching each index of the array
+    str.sort(); //big-O runtime here is O(s log s), where s is the longest string. V8 uses Quicksort as the default sorting mechanism. 
+});
+arr.sort(); //big-O runtime here is O(a*s log a), where a is the length of the array and s is the length of the string...we need to compare the strings in order to sort the array and that is O(s) runtime. 
+
+//How do we figure out the overall runtime then?
+//forEach block first....
+
+    //O(a * s log s);
+
+//then arr.sort
+    //O(a * s log a);
+
+
+//for...then...means we add the two runtimes together...
+// O(a * s log s) + O(a * s log a);
+// O(2(a * s) log s + log a);
+// don't need the coefficient
+// O( a * s (log s + log a)); <=== runtime
+
+```
+
+### Example 9 
+
+```c
+int sum(Node node) {
+    if(node == null) {
+        return 0;
+    }
+    return sum(node.left) + node.value + sum(node.right);
+}
+
+```
+
+You touch each node, so the runtime is O(n); No matter if it is recursive or not. 
+
+### Example 10;
+
+```c
+boolean isPrime(int n) {
+    for(int x = 2; x * x <= n; x++) {
+        if (n % x == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+```
+
+the runtime on the above is almost linear...the only difference is that the limiter in the middle of the for loop. So the run time would be the square root of the limiter. `O(√n)`
 
