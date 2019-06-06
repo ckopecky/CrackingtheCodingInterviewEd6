@@ -10,7 +10,6 @@ function unique(str) {
     let regex = /[^ *]/g
     const spaceFree = str.match(regex);
     const sorted = spaceFree.sort().join('');
-    console.log(sorted);
 
     for(let i = 0; i < sorted.length; i++){
         if(sorted[i] === sorted[i + 1]) {
