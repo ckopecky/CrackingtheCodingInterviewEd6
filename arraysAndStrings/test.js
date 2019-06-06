@@ -1,6 +1,7 @@
 const unique = require("./Unique");
 const permutation = require("./Permutation");
 const urlify = require("./urlify");
+const palindromePermutation = require("./PalindromePermutation");
 
 
 //unique
@@ -55,6 +56,28 @@ test('urlify string', () => {
 
 //palindrome permutation
 
+test('unique function exists', () => {
+    expect(typeof palindromePermutation).toEqual('function');
+});
+
+test('works on odd length string', () => {
+    expect(palindromePermutation("ctacato")).toBeTruthy();
+});
+
+test('works on standard even length string', () => {
+    expect(palindromePermutation("mamabcbc")).toBeTruthy();
+});
+//cbammabc
+
+test('works on standard even length string that is a multiple instances of letters', () => {
+    expect(palindromePermutation("mamababa")).toBeTruthy();
+});
+
+//abammaba
+
+test('falsy on word that is not permutation of palindrome', () => {
+    expect(palindromePermutation("hello")).toBeFalsy();
+});
 
 
 
